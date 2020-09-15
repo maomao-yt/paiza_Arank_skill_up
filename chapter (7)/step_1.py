@@ -1,13 +1,22 @@
-N, M = map(int, input().split())
+N, K = map(int, input().split())
 
-# 累積和を利用する
-def calc(N, M):
-    sum = int((M * (M + 1) // 2))
-    sub_sum = int((N * (N + 1) // 2))
-    if N == 0 and M == 0:
-        print(0)
+# 3つの数値を循環している特性から数列の開始値と終了値から総和の値を推測する
+A = [1, 0, -1]
+
+
+def calc(N, K):
+    st = A[N % 3]  # 数列の開始値
+    ed = A[K % 3]  # 数列の終了値
+    if st == 1:
+        if ed == 1:
+            return 1
+        else:
+            return 0
     else:
-        print(int(sum) - int(sub_sum)+N)
+        if ed == -1:
+            return -1
+        else:
+            return 0
 
 
-calc(N, M)
+print(calc(N-1, K-1))
